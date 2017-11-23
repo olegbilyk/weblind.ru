@@ -17,9 +17,7 @@
     <link rel="stylesheet" href="css/style.css">
   <!-- endbuild -->
 
-  <!-- build:js-index -->
-    <script src="js/index.js"></script>
-  <!-- endbuild -->
+  <link rel="preload" href="js/index.js" as="script">
 </head>
 <body class="main-page">
   <div class="content">
@@ -81,8 +79,9 @@
             <div class="logo-img"></div>
           </div>
           <div class="col right">
-            <button class="open-menu-btn" type="button" aria-label="Меню" aria-controls="mobile-menu">
-              <span class="i-menu"></span>
+            <button class="mobile-menu-btn" type="button" aria-controls="mobile-menu">
+              <span class="mobile-menu-btn__open" aria-label="Открыть меню"></span>
+              <span class="mobile-menu-btn__close" aria-label="Закрыть меню"></span>
             </button>
           </div>
           <div class="clear"></div>
@@ -94,9 +93,9 @@
       </div>
 
       <div class="mobile-menu-box close">
-        <button class="close-menu-btn" type="button" aria-label="Закрыть меню" aria-controls="mobile-menu">
-          <span class="i-close"></span>
-        </button>
+        <!--<button class="close-menu-btn" type="button" aria-label="Закрыть меню" aria-controls="mobile-menu">-->
+          <!--<span class="i-close"></span>-->
+        <!--</button>-->
         <div class="mobile-menu-wrap">
           <div class="mobile-menu">
 
@@ -585,5 +584,9 @@
       </div>
     </footer>
   </div>
+
+  <!-- build:js-index -->
+  <script src="js/index.js" defer></script>
+  <!-- endbuild -->
 </body>
 </html>

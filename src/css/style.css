@@ -80,6 +80,46 @@ body {
   padding-top: 2rem;
 }
 
+.content-wrap {
+  display: grid;
+  max-width: 1200px;
+  height: 100vh;
+  margin: 0 auto;
+}
+
+.site-header {
+  grid-area: site-header;
+  padding: 3rem 1rem 2rem 3rem;
+}
+
+.site-main {
+  position: relative;
+  grid-area: site-main;
+  overflow-y: auto;
+}
+
+.main-content {
+  padding: 4rem 3rem;
+}
+
+@media (min-width: 768px) {
+  .content-wrap {
+    grid-template-areas: "site-header site-main";
+    grid-template-columns: 25% 1fr;
+    justify-content: center;
+    height: 100vh;
+    overflow-y: hidden;
+  }
+}
+
+/* --- */
+
+.sticky-logo {
+  position: absolute;
+  border-bottom: none;
+}
+
+
 /* Main text
 ----------------------------------------------------------------------------- */
 h1, h3, h4, h5 {
@@ -147,14 +187,14 @@ header {
   word-spacing: -5px;
 }
 
-.logo-text {
-  font-size: 1.6rem;
-  line-height: 2.2rem;
-}
-
-.logo-link {
+.logo-link-text {
+  margin-bottom: 3rem;
   border: none;
   color: #000;
+}
+
+.logo-link-text strong {
+  display: block;
 }
 
 .logo-img {
@@ -174,7 +214,7 @@ header {
   margin-top: 5px;
 }
 
-.logo-link:hover .logo-img {
+.logo-link-text:hover .logo-img {
   background-position: right 0;
 }
 
@@ -203,16 +243,16 @@ header {
   padding: 4.7rem 0 4rem;
 }
 
-.sidebar-fixed {
-  position: fixed;
-  top: 1rem;
-  left: 0;
-  bottom: 0;
-  z-index: 999;
-  padding-bottom: 10rem;
-  margin-left: -.5rem;
-  overflow: hidden;
-}
+/*.sidebar-fixed {*/
+  /*position: fixed;*/
+  /*top: 1rem;*/
+  /*left: 0;*/
+  /*bottom: 0;*/
+  /*z-index: 999;*/
+  /*padding-bottom: 10rem;*/
+  /*margin-left: -.5rem;*/
+  /*overflow: hidden;*/
+/*}*/
 
 /*.sidebar-fixed:focus,
 .sidebar-fixed:hover {
@@ -220,9 +260,9 @@ header {
   padding-right: 2rem;
 }*/
 
-.sidebar-scroll {
-  padding-right: 2rem;
-}
+/*.sidebar-scroll {*/
+  /*padding-right: 2rem;*/
+/*}*/
 
 /*.sidebar-fixed:hover .sidebar-scroll {
   padding-right: .3rem;
@@ -408,78 +448,90 @@ ul.list-none li {
 
 /* mobile
 ----------------------------------------------------------------------------- */
+@media (max-width: 767px) {
+  .mobile-menu-box {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    z-index: 998;
+    overflow-y: auto;
+  }
+
+  #mobile-menu {
+    margin-left: -.5rem;
+  }
+
+  .mobile-menu-box.close {display: none;}
+  .mobile-menu-box.open  {display: block;}
+
+  .mobile-menu-wrap {
+    position: relative;
+    padding: 0 2rem;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .mobile-menu {padding: 1.8rem 0 1rem;}
+
+  .mobile-menu .menu-v {
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+  }
+
+  .mobile-menu .menu-v .level-1 > span,
+  .mobile-menu .menu-v .level-1 > a {
+    padding: .7rem .5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .mobile-menu-btn {
+    display: none;
+  }
+
+  .logo-link-text {
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+  }
+}
+
 body.mobile-menu-hidden {overflow: hidden;}
 
-.mobile-menu-box {
+.mobile-menu-btn {
   position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: #fff;
+  top: 2rem;
+  right: 2rem;
   z-index: 999;
-  opacity: 0;
-  overflow-y: auto;
+  display: block;
+  border: none;
 }
 
-#mobile-menu {
-  margin-left: -.5rem;
-}
-
-.mobile-menu-box.close {display: none;}
-.mobile-menu-box.open  {display: block;}
-
-.mobile-menu-wrap {
-  position: relative;
-  padding: 0 2rem;
-  height: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-.mobile-menu {padding: 1.8rem 0 1rem;}
-
-.mobile-menu .menu-v {
-  font-size: 1.6rem;
-  line-height: 2.2rem;
-}
-
-.mobile-menu .menu-v .level-1 > span,
-.mobile-menu .menu-v .level-1 > a {
-  padding: .7rem .5rem;
-}
-
-.open-menu-btn,
-.close-menu-btn {border: none;}
-
-.mobile-menu-box .close-menu-btn {
-  position: fixed;
-  top: 2rem;
-  right: 2rem;
-  z-index: 9999;
-}
-
-.open-menu-btn {
-  position: fixed;
-  top: 2rem;
-  right: 2rem;
-  z-index: 998;
-}
-
-.i-close {
-  background: url(../images/icon-close.png) 0 0 no-repeat;
+.mobile-menu-btn__open {
+  background: url(../images/icon-menu.png) 0 0 no-repeat;
   background-size: 32px 32px;
   width: 32px;
   height: 32px;
   display: block;
 }
 
-.i-menu {
-  background: url(../images/icon-menu.png) 0 0 no-repeat;
+.mobile-menu-btn__close {
+  background: url(../images/icon-close.png) 0 0 no-repeat;
   background-size: 32px 32px;
   width: 32px;
   height: 32px;
+  display: none;
+}
+
+.mobile-menu-btn.mobile-menu-btn--open .mobile-menu-btn__open {
+  display: none;
+}
+
+.mobile-menu-btn.mobile-menu-btn--open .mobile-menu-btn__close {
   display: block;
 }
 
@@ -549,7 +601,7 @@ footer a,
   .xs-width-100 {width: 100%;}
 
   /* Header */
-  .logo-text {margin-top: 1px;}
+  .logo-link-text {margin-top: 1px;}
 
   /* List */
   dl[class*="list"] dt {
@@ -579,7 +631,7 @@ footer a,
 }
 
 @media (min-width: 768px) {
-  .open-menu-btn {display: none;}
+  .mobile-menu-btn {display: none;}
 }
 
 /* Landscape phone to portrait tablet
@@ -610,7 +662,7 @@ footer a,
 
   .sidebar,
   .empty-col,
-  .logo-text br {display: none;}
+  .logo-link-text br {display: none;}
 
   .link-fixed {
     position: relative;
@@ -643,7 +695,7 @@ footer a,
     margin-top: 0;
   }
 
-  .logo-text {display: none;}
+  /*.logo-text {display: none;}*/
 
   .logo-fixed {
     position: relative;
@@ -791,3 +843,43 @@ footer a,
 @media (max-width: 480px) {
 
 }
+
+.title-link a {
+  position: relative;
+  color: inherit;
+  border-bottom-color: transparent;
+  transition: all 0.1s ease;
+}
+
+.title-link a:hover,
+.title-link a:focus {
+  color: #fb3347;
+}
+
+.title-link a:active {
+  color: #e73346;
+}
+
+.title-link a:hover::before,
+.title-link a:focus::before {
+  opacity: 1;
+  visibility: visible;
+}
+
+.title-link a::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -30px;
+  transform: translateY(-50%);
+  display: block;
+  width: 20px;
+  height: 20px;
+  padding-right: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.1s ease;
+  color: #d8d8d8;
+  background: url('../pictures/icon-link.svg') center no-repeat;
+}
+

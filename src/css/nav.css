@@ -16,17 +16,27 @@ nav ul,
 
 [class*="level-"] > a {text-decoration: none;}
 
-nav [class*="level-"].active {
+nav [class*="level-"] a.active {
   background-color: #f4f4f4;
-  color: #0000fe;
-}
-nav [class*="level-"].active  > a {
   color: #000;
 }
 
-nav [class*="level-"].active  > a:hover {
+nav [class*="level-"] a.active:hover {
   cursor: default;
 }
+/*///*/
+nav [class*="level-"] a.link-active {
+  background-color: #f4f4f4;
+  color: #000;
+}
+
+nav [class*="level-"] a.link-active:hover {
+  cursor: default;
+}
+
+/*nav [class*="level-"] a strong {*/
+  /*color: #000;*/
+/*}*/
 
 /* Horizontal menu
 ----------------------------------------------------------------------------- Vertical menu */
